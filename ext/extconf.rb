@@ -1,12 +1,9 @@
 require 'mkmf'
 
-case RUBY_VERSION
-when /\A1\.8/
+if RUBY_VERSION =~ /\A1\.8/
   $CFLAGS += ' -DRUBY_1_8_x'
-when /\A[12]\.9/
-  $CFLAGS += ' -DRUBY_1_9_x' 
 else
-  raise "unsupported Ruby version: #{RUBY_VERSION}"
+  $CFLAGS += ' -DRUBY_1_9_x'
 end
 
 create_makefile('tuple')
